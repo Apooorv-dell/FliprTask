@@ -13,12 +13,30 @@ import { Prize } from "../service/apiData";
 
 interface Props {
   data: Prize[] | null;
+  selectedCategory: string;
+  selectedYear: string;
 }
 
-const PrizeList = ({ data }: Props) => {
+const PrizeList = ({ data, selectedCategory, selectedYear }: Props) => {
+  let filteredData;
+  //  filteredData = data?.filter((d)=> d.year === selectedYear)
+  filteredData = data?.filter((item) => {
+    if (selectedCategory && selectedYear) {
+      return item.category === selectedCategory && item.year === selectedYear;
+    } else if (selectedCategory) {
+      return item.category === selectedCategory;
+    } else if (selectedYear) {
+      return item.year === selectedYear;
+    } else {
+      return true;
+    }
+  });
+  if (selectedCategory === "all" || selectedYear==='Year') filteredData = data;
+  
+
   return (
     <>
-      {data?.map((m) => (
+      {filteredData?.map((m) => (
         <Card my={"5px"} key={m.year.toString() + m.category.toString()}>
           <CardHeader>
             <Flex>
