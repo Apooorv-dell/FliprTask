@@ -21,7 +21,7 @@ const useData = () => {
   useEffect(() => {
     // https://cors-anywhere.herokuapp.com/https://api.nobelprize.org/v1/prize.json
     axios
-      .get("https://cors-anywhere.herokuapp.com/https://api.nobelprize.org/v1/prize.jso", {
+      .get("https://api.nobelprize.org/v1/prize.jso", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
